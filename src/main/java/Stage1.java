@@ -1,10 +1,10 @@
-import core.Stage;
+import core.chain.Stage;
 
-@Stage(ID = "3")
-public class Stage3 {
+@Stage(ID = "1")
+public class Stage1 {
 
     public Object invoke(Object in) {
-        System.out.println("Stage3");
+        System.out.println("Stage1");
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {

@@ -1,4 +1,4 @@
-import core.Stage;
+import core.chain.Stage;
 
 @Stage(ID = "1")
 public class Stage10 {

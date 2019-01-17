@@ -1,25 +1,28 @@
-package core;
+package core.chain;
 
 import java.lang.reflect.InvocationTargetException;
 
 //immutable
-class StageWrapper implements Comparable<StageWrapper> {
+public class StageWrapper implements Comparable<StageWrapper> {
     private Object machine;
     private String number;
+    private String chainName;
 
-    public StageWrapper(Object machine, String number) {
+    public StageWrapper(Object machine, String number, String chainName) {
         this.machine = machine;
         this.number = number;
+        this.chainName = chainName;
     }
 
-    public void invoke() {
-        Class cl = machine.getClass();
+    public Object invoke(Object in) {
+        var cl = machine.getClass();
         try {
-            cl
+            var out = cl
                     .getMethod("invoke", Object.class)
-                    .invoke(machine,"test");
+                    .invoke(machine,in);
+            return out;
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
+            throw new IllegalStateException(e);
         }
     }
 
@@ -29,6 +32,10 @@ class StageWrapper implements Comparable<StageWrapper> {
 
     public String getNumber() {
         return number;
+    }
+
+    public String getChainName() {
+        return chainName;
     }
 
     @Override

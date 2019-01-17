@@ -1,4 +1,4 @@
-package core;
+package core.chain;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -7,6 +7,6 @@ import java.lang.annotation.RetentionPolicy;
 public @interface Stage {
 
     String ID();
-    String name() default "main";
+    String chainName() default "main";
 
 }
