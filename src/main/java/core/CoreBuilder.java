@@ -45,20 +45,21 @@ public class CoreBuilder {
 
 
     private Collection<String> findStages() throws IOException {
-        Path path = Paths.get("").toAbsolutePath();
+//        Path path = Paths.get("").toAbsolutePath();
+//        Path path = Path
 
-        System.out.println("Current relative path is: " + path);
+//        System.out.println("Current relative path is: " + path);
+//
+//        Files.find(path, 100,
+//                (p, basicFileAttributes) -> {
+//                    File file = p.toFile();
+//                    return !file.isDirectory() &&
+//                            file.getName().contains("Stage");
+//                });
 
-        Files.find(path, 100,
-                (p, basicFileAttributes) -> {
-                    File file = p.toFile();
-                    return !file.isDirectory() &&
-                            file.getName().contains("Stage");
-                });
 
 
-
-        File[] files = new File(path.toString())
+        File[] files = new File("/home/andrey/Projects/Wave/src/main/java")
                 .listFiles((dir, name) -> name.contains("Stage"));
 
         assert files != null;

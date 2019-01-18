@@ -11,7 +11,7 @@ public class Core {
         chainsKeeper.addStage(sw);
     }
 
-    public void process(String chainName, Object o) {
+    public void process(String chainName, Object ...o) {
         chainsKeeper.push(chainName, o);
     }
 

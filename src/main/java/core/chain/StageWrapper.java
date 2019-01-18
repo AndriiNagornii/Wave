@@ -14,12 +14,12 @@ public class StageWrapper implements Comparable<StageWrapper> {
         this.chainName = chainName;
     }
 
-    public Object invoke(Object in) {
+    public Object invoke(Object ...in) {
         var cl = machine.getClass();
         try {
             var out = cl
-                    .getMethod("invoke", Object.class)
-                    .invoke(machine,in);
+                    .getMethod("invoke", in[0].getClass(), in[1].getClass())
+                    .invoke(machine, in);
             return out;
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             throw new IllegalStateException(e);

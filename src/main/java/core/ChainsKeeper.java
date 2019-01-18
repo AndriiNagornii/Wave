@@ -27,7 +27,7 @@ public class ChainsKeeper {
         chainMap.put(chain.getName(), chain);
     }
 
-    public void push(String chainName, Object in) {
+    public void push(String chainName, Object ...in) {
         chainMap
                 .get(chainName)
                 .push(in);

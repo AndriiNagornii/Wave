@@ -8,6 +8,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedList;
+
+import static java.lang.Integer.*;
 
 public class Boot {
 
@@ -36,7 +40,7 @@ class Handler extends AbstractHandler {
     }
 
     public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response)
-            throws IOException, ServletException {
+            throws IOException {
 
         if (target.equals("/admin")) {
             response.setContentType("text/html;charset=utf-8");
@@ -74,13 +78,23 @@ class Handler extends AbstractHandler {
                     .split("&");
 
             var chainName = params[0];
-            var in = params[1];
+//            var in = params[1];
 
-            core.process(chainName, Integer.parseInt(in));
+            var buffReader = baseRequest.getReader();
+
+            var in0 = buffReader.readLine();
+            System.out.println(in0);
+
+//            var inParams = parseInParams(in0);
+
+//            core.process(chainName, inParams);
 
             Object result = core.getSynch(chainName);
             response.getWriter().println(result);
         }
 
     }
+
+
+
 }

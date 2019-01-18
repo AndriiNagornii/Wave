@@ -2,7 +2,7 @@ package core.chain;
 
 public interface Chain {
 
-    void push(Object o);
+    void push(Object ...o);
 
     Object getSynch();
 

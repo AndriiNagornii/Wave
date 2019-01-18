@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
  * work like priority queue
  */
 public class SimpleChain implements Chain {
+
     private String name;
     private List<List<StageWrapper>> stageWrappers = new LinkedList<>();
     private ExecutorService executor;
@@ -70,12 +71,18 @@ public class SimpleChain implements Chain {
     }
 
     @Override
-    public void push(Object o) {
-        var current = o;
-        for (List<StageWrapper> list : stageWrappers) {
-            if (list.size() == 1) {
-                current = list.get(0).invoke(current);
-            }
+    public void push(Object ...o) {
+        stageWrappers
+                .get(0)
+                .get(0)
+                .invoke(o);
+    }
+
+//        var current = o;
+//        for (List<StageWrapper> list : stageWrappers) {
+//            if (list.size() == 1) {
+//                current = list.get(0).invoke(current[0]);
+//            }
 //            else {
 //                var futures = new ArrayList<Future>();
 //                for (StageWrapper sw : list) {
@@ -90,12 +97,13 @@ public class SimpleChain implements Chain {
 //                    }
 //                });
 //            }
-        }
-        this.out = current;
-    }
+//        }
+//        this.out = current;
 
     @Override
     public Object getSynch() {
         return out;
     }
+
+
 }
